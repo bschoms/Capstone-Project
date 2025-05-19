@@ -1,0 +1,11 @@
+install.packages("ggplot2")
+library(ggplot2)
+rides_data <- read.csv("membertype_ridetype_duration.csv")
+ggplot(rides_data, aes(y = rideable_type, x = ride_duration_mins, color = member_casual)) +
+  geom_jitter(alpha = 0.3, width = 0.4, height = 0.4) +
+  labs(title = "Ride Duration by Member Type and Rideable Type",
+       y = "Rideable Type",
+       x = "Ride Duration",
+       color = "Member Type") +
+  theme_minimal() +
+  scale_color_manual(values = c("blue", "red"))
