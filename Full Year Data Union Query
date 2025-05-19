@@ -1,0 +1,24 @@
+CREATE OR REPLACE TABLE `capstoneprojecct.cyclist_data.fullyear_trips` AS
+SELECT * FROM `capstoneprojecct.cyclist_data.apr24_trips`
+UNION ALL
+SELECT * FROM `capstoneprojecct.cyclist_data.may24_trips`
+UNION ALL
+SELECT * FROM `capstoneprojecct.cyclist_data.jun24_trips`
+UNION ALL
+SELECT * FROM `capstoneprojecct.cyclist_data.jul24_trips`
+UNION ALL
+SELECT * FROM `capstoneprojecct.cyclist_data.aug24_trips`
+UNION ALL
+SELECT * FROM `capstoneprojecct.cyclist_data.sep24_trips`
+UNION ALL
+SELECT * FROM `capstoneprojecct.cyclist_data.oct24_trips`
+UNION ALL
+SELECT * FROM `capstoneprojecct.cyclist_data.nov24_trips`
+UNION ALL
+SELECT * FROM `capstoneprojecct.cyclist_data.dec24_trips`
+UNION ALL
+SELECT * FROM `capstoneprojecct.cyclist_data.jan25_trips`
+UNION ALL
+SELECT * FROM `capstoneprojecct.cyclist_data.feb25_trips`
+UNION ALL
+SELECT * FROM `capstoneprojecct.cyclist_data.mar25_trips`
