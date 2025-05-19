@@ -1,0 +1,12 @@
+SELECT
+  ROUND(start_lat, 5) AS round_start_lat,
+  ROUND(start_lng, 5) AS round_start_lng,
+  COUNT(*) AS ride_count
+From 
+  `capstoneprojecct.cyclist_data.fullyear_trips`
+WHERE 
+  start_lat IS NOT NULL AND start_lng IS NOT NULL
+  AND start_lat BETWEEN 41.6 AND 42.1 
+  AND start_lng BETWEEN -88.0 AND -87.5
+  GROUP BY round_start_lat, round_start_lng
+  ORDER BY ride_count DESC;
