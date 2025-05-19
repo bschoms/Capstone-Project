@@ -1,16 +1,21 @@
 SELECT
   start_station_name,
-  COUNTIF(member_casual = 'member') AS member_rides,
-  COUNTIF(member_casual = 'casual') AS casual_rides,
+  MIN(start_lat) AS start_lat,
+  MIN(start_lng) AS start_lng,
   COUNT(*) AS total_rides,
-  ROUND(COUNTIF(member_casual = 'member') * 100.0 / COUNT(*), 2) AS percent_member
+  SUM(CASE WHEN member_casual = 'member' THEN 1 ELSE 0 END) AS member_rides,
+  SUM(CASE WHEN member_casual = 'casual' THEN 1 ELSE 0 END) AS non_member_rides,
+  ROUND(SUM(CASE WHEN member_casual = 'member' THEN 1 ELSE 0 END) / COUNT(*), 4) AS member_percentage
 FROM
   `capstoneprojecct.cyclist_data.fullyear_trips`
-WHERE
-  start_station_name IS NOT NULL
+WHERE 
+  start_lat IS NOT NULL AND start_lng IS NOT NULL
+  AND start_lat BETWEEN 41.6 AND 42.1 
+  AND start_lng BETWEEN -88.0 AND -87.5
 GROUP BY
   start_station_name
 HAVING
-  total_rides > 225  -- removing low-volume stations
+  total_rides >= 500
 ORDER BY
-  percent_member DESC;
+  member_percentage DESC
+LIMIT 50;
