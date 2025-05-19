@@ -1,0 +1,7 @@
+SELECT
+  COUNT(*) AS total_rides,
+  SUM(CASE WHEN member_casual = 'member' THEN 1 ELSE 0 END) AS member_rides,
+  SUM(CASE WHEN member_casual = 'casual' THEN 1 ELSE 0 END) AS non_member_rides,
+  ROUND(100 * SUM(CASE WHEN member_casual = 'member' THEN 1 ELSE 0 END) / COUNT(*), 2) AS member_percentage
+FROM
+  `capstoneprojecct.cyclist_data.fullyear_trips`
